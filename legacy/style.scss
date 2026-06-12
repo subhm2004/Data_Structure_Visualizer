@@ -1,0 +1,39 @@
+/* SortViz — SCSS source (compile to css/style.css) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+$no_algos: 6;
+
+:root {
+    --bg-base: #0a0a0f;
+    --bg-surface: rgba(255, 255, 255, 0.03);
+    --bg-surface-hover: rgba(255, 255, 255, 0.06);
+    --bg-glass: rgba(15, 15, 25, 0.75);
+    --border: rgba(255, 255, 255, 0.08);
+    --accent: #6366f1;
+    --accent-light: #818cf8;
+    --accent-glow: rgba(99, 102, 241, 0.35);
+    --text-primary: #f0f0f5;
+    --text-secondary: #8888a0;
+    --text-muted: #55556a;
+    --sidebar-width: 280px;
+    --radius: 12px;
+    --radius-sm: 8px;
+}
+
+*
+{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+.hide {
+    display: none;
+}

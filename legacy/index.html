@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortViz — Sorting Algorithm Visualizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="12" width="3" height="9" rx="1"/>
+                        <rect x="8" y="8" width="3" height="13" rx="1"/>
+                        <rect x="13" y="4" width="3" height="17" rx="1"/>
+                        <rect x="18" y="10" width="3" height="11" rx="1"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1>SortViz</h1>
+                    <p class="brand-tagline">Algorithm Visualizer</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2 class="panel-title">Controls</h2>
+
+                <div class="control-group">
+                    <div class="control-header">
+                        <label for="a_size">Array Size</label>
+                        <span class="control-value" id="size_value">80</span>
+                    </div>
+                    <input id="a_size" type="range" min="20" max="150" step="1" value="80">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-header">
+                        <label for="a_speed">Animation Speed</label>
+                        <span class="control-value" id="speed_value">Fast</span>
+                    </div>
+                    <input id="a_speed" type="range" min="1" max="5" step="1" value="4">
+                </div>
+
+                <button id="a_generate" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                    </svg>
+                    Generate New Array
+                </button>
+            </div>
+
+            <div class="panel">
+                <h2 class="panel-title">Algorithms</h2>
+                <div class="algos">
+                    <button data-algo="Bubble">
+                        <span class="algo-dot algo-bubble"></span>
+                        Bubble Sort
+                    </button>
+                    <button data-algo="Selection">
+                        <span class="algo-dot algo-selection"></span>
+                        Selection Sort
+                    </button>
+                    <button data-algo="Insertion">
+                        <span class="algo-dot algo-insertion"></span>
+                        Insertion Sort
+                    </button>
+                    <button data-algo="Merge">
+                        <span class="algo-dot algo-merge"></span>
+                        Merge Sort
+                    </button>
+                    <button data-algo="Quick">
+                        <span class="algo-dot algo-quick"></span>
+                        Quick Sort
+                    </button>
+                    <button data-algo="Heap">
+                        <span class="algo-dot algo-heap"></span>
+                        Heap Sort
+                    </button>
+                </div>
+            </div>
+
+            <div class="legend panel">
+                <h2 class="panel-title">Color Legend</h2>
+                <div class="legend-items">
+                    <div class="legend-item"><span class="legend-swatch swatch-default"></span> Unsorted</div>
+                    <div class="legend-item"><span class="legend-swatch swatch-compare"></span> Comparing</div>
+                    <div class="legend-item"><span class="legend-swatch swatch-swap"></span> Swapping</div>
+                    <div class="legend-item"><span class="legend-swatch swatch-sorted"></span> Sorted</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+
+            <header class="topbar">
+                <div class="status-badge" id="status_badge">
+                    <span class="status-dot"></span>
+                    Ready
+                </div>
+                <p class="topbar-hint">Select an algorithm to begin visualization</p>
+            </header>
+
+            <section class="viz-section">
+                <div id="array_container" class="array-container"></div>
+            </section>
+
+            <section class="stats-section">
+
+                <div id="Info_Cont1" class="stat-card">
+                    <div class="stat-card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <h3>Time Complexity</h3>
+                    </div>
+                    <div class="Complexity_Containers" id="Time_Complexity_Types_Container">
+                        <div class="Pair_Definitions">
+                            <p class="Sub_Heading">Worst Case</p>
+                            <p class="complexity-value" id="Time_Worst">—</p>
+                        </div>
+                        <div class="Pair_Definitions">
+                            <p class="Sub_Heading">Average Case</p>
+                            <p class="complexity-value" id="Time_Average">—</p>
+                        </div>
+                        <div class="Pair_Definitions">
+                            <p class="Sub_Heading">Best Case</p>
+                            <p class="complexity-value" id="Time_Best">—</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="Info_Cont2" class="stat-card">
+                    <div class="stat-card-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                        </svg>
+                        <h3>Space Complexity</h3>
+                    </div>
+                    <div class="Complexity_Containers" id="Space_Complexity_Types_Container">
+                        <div class="Pair_Definitions">
+                            <p class="Sub_Heading">Worst Case</p>
+                            <p class="complexity-value" id="Space_Worst">—</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>Made with passion by <strong>Shubham Malik</strong></p>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/visualizations.js"></script>
+    <script src="./scripts/bubble_sort.js"></script>
+    <script src="./scripts/selection_sort.js"></script>
+    <script src="./scripts/insertion_sort.js"></script>
+    <script src="./scripts/merge_sort.js"></script>
+    <script src="./scripts/quick_sort.js"></script>
+    <script src="./scripts/heap_sort.js"></script>
+</body>
+</html>
